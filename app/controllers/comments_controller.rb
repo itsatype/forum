@@ -14,8 +14,4 @@ class CommentsController < ApplicationController
 		params.require(:comment).permit(:comment, :post_id)
 	end
 
-	def current_user
-		User.find(1)
-	end
-
 end
