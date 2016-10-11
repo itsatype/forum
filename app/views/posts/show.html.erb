@@ -1,0 +1,33 @@
+<% if flash[:notice] %>
+  <%= flash[:notice] %>
+<% end %>
+
+ <div>
+	<%= @post.title %>
+</div>
+<div>
+	<%= @post.content %>
+</div>
+<div>
+	<%= @post.user.name %>, 	<%= @post.created_at.strftime("%A, %d %b %Y") %>
+</div>
+<% @comments.each do |comment| %>
+	<div>
+		<%= comment.comment %>
+	</div>
+	<div>
+		<%= comment.user.name %>, <%= comment.created_at.strftime("%A, %d %b %Y") %>
+	</div>
+<% end%>
+
+<%= form_for @comment do |f| %>
+	<div>
+		<%= f.text_field :comment, placeholder: "Leave your thoughts here.	" %>
+	</div>
+	<div>
+		<%= f.hidden_field :post_id, value: @post.id %>
+	</div>	
+	<div>
+		<%= f.submit %>
+	</div>
+<% end%>
