@@ -11,13 +11,12 @@ class SessionsController <  ApplicationController
 			session[:user_id] = @user.id
 			redirect_to posts_path
 		else
-			flash[:alert] = "You username or password is invalid"			
 			render 'new'
 		end
 	end
 
 	def destroy
 		session[:user_id] = nil
-		redirect_to root_url
+		redirect_to posts_path
 	end
 end
