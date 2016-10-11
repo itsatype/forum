@@ -1,0 +1,9 @@
+ <%= form_tag sessions_path do %>
+  <% if flash[:alert] %>
+    <%= flash[:alert] %>
+  <% end %>
+
+    <%= text_field_tag(:name, nil, placeholder: "Name" %>
+      	<%= password_field_tag(:password, nil, placeholder: "Password" %>	
+    	 <%= submit_tag("Log In", :class => "btn, btn-success btn-lg") %>
+    <% end %>

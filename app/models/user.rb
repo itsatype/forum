@@ -19,4 +19,6 @@ class User < ApplicationRecord
   # has_many :received_messages, class_name: 'Message', foreign_key: 'recipient_id'  
 
 	has_secure_password
+	validates :name, presence: true, uniqueness: true
+	validates :email, presence: true, uniqueness: true	
 end
