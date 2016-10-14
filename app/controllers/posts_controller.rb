@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
 
   before_action :find_post, except: [:new, :create, :index]
+  before_action :authorized?, only: [:new, :create]
 
 	def new
 		@post = Post.new
