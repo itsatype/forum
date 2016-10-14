@@ -7,9 +7,7 @@ class PostsController < ApplicationController
 	end
 
 	def create
-		Aws.config.update({
-		   credentials: Aws::Credentials.new()
-		})
+		Aws.config.update({credentials: Aws::Credentials.new()})
 		s3 = Aws::S3::Resource.new(region: 'us-east-1')
 		@post = Post.create(post_params)
 		@post.user = current_user
@@ -27,6 +25,9 @@ class PostsController < ApplicationController
 	def show
 		@comment = Comment.new
 		@comments = Comment.where(post_id: @post.id)
+	end
+
+	def edit
 	end
 
 	def index

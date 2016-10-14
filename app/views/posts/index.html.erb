@@ -26,8 +26,9 @@
 				</div>
 
       <% @posts.each do |post| %>
-				<div class="mdl-card mdl-cell mdl-cell--12-col">
+				<div class="mdl-card  mdl-shadow--2dp mdl-cell mdl-cell--12-col">
 					<div class="mdl-card__media mdl-color-text--grey-50">
+						<img src ="https://s3.amazonaws.com/thinxforum/<%= post.id %>">
 						<h3><%= link_to post.title, post_path(post.id) %></h3>
 					</div>
 					<div class="mdl-card__supporting-text mdl-color-text--grey-600">
