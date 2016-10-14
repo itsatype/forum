@@ -1,11 +1,44 @@
-<% @posts.each do |post| %>
-	<div>
-		<%= link_to post.title, post_path(post.id) %>
-	</div>
-	<div>
-		<%= post.content %>
-	</div>
-	<div>
-		<%= post.user.name %>, 	<%= post.created_at.strftime("%A, %d %b %Y") %>
-	</div>
-<% end%>
+  <div class="demo-blog mdl-layout mdl-js-layout has-drawer is-upgraded">
+    <main class="mdl-layout__content">
+      <div class="demo-blog__posts mdl-grid">
+				<div class="mdl-card something-else mdl-cell mdl-cell--12-col">
+				<a href="<%= new_post_path %>">
+				  <button class="mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--fab mdl-color--accent" >
+				    <i class="material-icons mdl-color-text--white" role="presentation">add</i>
+					</button> 
+				</a>
+				  <div class="mdl-card__media mdl-color--white mdl-color-text--grey-600">
+				    <img src="https://ga-core.s3.amazonaws.com/cms/files/files/000/002/178/original/Thinx.png">
+				  </div>
+				  <div class="mdl-card__supporting-text meta meta--fill mdl-color-text--grey-600">
+				    <div>
+				      <strong>Thinx Forum</strong>
+				    </div>
+				    <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right mdl-js-ripple-effect" for="menubtn">
+				      <li class="mdl-menu__item"><a href="https://www.shethinx.com/pages/about-us"> About</a></li>
+				      <li class="mdl-menu__item">Message</li>
+				    </ul>
+				    <button id="menubtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+				      <i class="material-icons" role="presentation">more_vert</i>
+				      <span class="visuallyhidden">show menu</span>
+				    </button>
+				  </div>
+				</div>
+
+      <% @posts.each do |post| %>
+				<div class="mdl-card mdl-cell mdl-cell--12-col">
+					<div class="mdl-card__media mdl-color-text--grey-50">
+						<h3><%= link_to post.title, post_path(post.id) %></h3>
+					</div>
+					<div class="mdl-card__supporting-text mdl-color-text--grey-600">
+						<%= post.content %>
+					</div>
+			  	<div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
+						<strong><%= post.user.name %></strong> 	
+						<span><%= post.created_at.strftime("%A, %d %b %Y") %></span>
+					</div>
+				</div>
+			<% end%>
+		</div>
+	</main>
+</div>

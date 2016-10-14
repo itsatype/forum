@@ -3,19 +3,48 @@
   <head>
     <title>Forum</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+		<%= stylesheet_link_tag 'https://code.getmdl.io/1.2.1/material.red-light_blue.min.css' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    
+
   </head>
 
   <body>
-          <% if logged_in? %> <!-- If logged in -->
-          <li><%= link_to "Log Out", logout_path, method: :delete %></li>
-        <% else %> <!-- If logged out -->
-          <li><%= link_to "Register", register_path %></li>
-          <li><%= link_to "Log In", login_path %></li>
+
+<!-- Always shows a header, even in smaller screens. -->
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+  <header class="mdl-layout__header">
+    <div class="mdl-layout__header-row">
+      <!-- Title -->
+      <span class="mdl-layout-title">Title</span>
+      <!-- Add spacer, to align navigation to the right -->
+      <div class="mdl-layout-spacer"></div>
+      <!-- Navigation. We hide it in small screens. -->
+      <nav class="mdl-navigation mdl-layout--large-screen-only">
+      <% if logged_in? %> 
+        <%= link_to "New Post", new_post_path, class: "mdl-navigation__link" %>
+        <%= link_to "Log Out", logout_path, method: :delete, class: "mdl-navigation__link"  %></a>
+        <% else %>
+        	<%= link_to "Register", register_path, class: "mdl-navigation__link" %></li>
+        	<%= link_to "Log In", login_path, class: "mdl-navigation__link" %>
         <% end %>
-    <%= yield %>
+      </nav>
+    </div>
+  </header>
+  <div class="mdl-layout__drawer">
+    <span class="mdl-layout-title">Title</span>
+    <nav class="mdl-navigation">
+      <a class="mdl-navigation__link" href="">Link</a>
+      <a class="mdl-navigation__link" href="">Link</a>
+      <a class="mdl-navigation__link" href="">Link</a>
+      <a class="mdl-navigation__link" href="">Link</a>
+    </nav>
+  </div>
+  <main class="mdl-layout__content">
+    <div class="page-content"><%= yield %></div>
+  </main>
+</div>
+
+
   </body>
 </html>

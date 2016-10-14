@@ -1,33 +1,57 @@
 <% if flash[:notice] %>
   <%= flash[:notice] %>
 <% end %>
+    <div class="demo-blog demo-blog--blogpost mdl-layout mdl-js-layout has-drawer is-upgraded">
+      <main class="mdl-layout__content">
 
- <div>
-	<%= @post.title %>
+        <div class="demo-blog__posts mdl-grid">
+          <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+            <div class="mdl-card__media mdl-color-text--grey-50">
+              <h3>	<%= @post.title %></h3>
+            </div>
+            <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+              <div class="minilogo"></div>
+              <div>
+                <strong><%= @post.user.name %></strong>
+                <span><%= @post.user.created_at.strftime("%A, %d %b %Y") %></span>
+              </div>	
+              <div class="section-spacer"></div>
+              <div>
+                <i class="material-icons" role="presentation">share</i>
+                <span class="visuallyhidden">share</span>
+              </div>
+            </div>
+            <div class="mdl-color-text--grey-700 mdl-card__supporting-text">
+            	<%= @post.content %>
+            </div>
+            <div class="mdl-color-text--primary-contrast mdl-card__supporting-text comments">
+            <%= form_for @comment do |f| %>
+	            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+							  <%= f.text_area :comment, class: "mdl-textfield__input" %>
+	              <%= f.label :comment, class: "mdl-textfield__label"%>
+	            </div>
+							<div>
+								<%= f.hidden_field :post_id, value: @post.id %>
+							</div>	
+						<div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
+							<span><%= f.submit 'Leave Comment!', class: "mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" %></span>
+						</div>
+						<% end%>
+						<div class="comment mdl-color-text--grey-700">
+						<% @comments.each do |comment| %>
+                <header class="comment__header">
+                  <div class="comment__author">
+                    <strong><%= comment.user.name %></strong>
+                    <span><%= comment.created_at.strftime("%A, %d %b %Y")%></span>
+                  </div>
+                </header>
+                <div class="comment__text">
+                  	<%= comment.comment %>
+                </div>
+                <% end%>
+                </div>
+              </div>
+            </div>
+          </div>
+	</main>
 </div>
-<div>
-	<%= @post.content %>
-</div>
-<div>
-	<%= @post.user.name %>, 	<%= @post.created_at.strftime("%A, %d %b %Y") %>
-</div>
-<% @comments.each do |comment| %>
-	<div>
-		<%= comment.comment %>
-	</div>
-	<div>
-		<%= comment.user.name %>, <%= comment.created_at.strftime("%A, %d %b %Y") %>
-	</div>
-<% end%>
-
-<%= form_for @comment do |f| %>
-	<div>
-		<%= f.text_field :comment, placeholder: "Leave your thoughts here.	" %>
-	</div>
-	<div>
-		<%= f.hidden_field :post_id, value: @post.id %>
-	</div>	
-	<div>
-		<%= f.submit %>
-	</div>
-<% end%>

@@ -25,6 +25,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'bcrypt'
 gem 'material_design_lite-rails', '~> 1.2'
 gem 'material_icons'
+gem 'aws-sdk'
 
 
 

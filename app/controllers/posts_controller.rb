@@ -7,9 +7,16 @@ class PostsController < ApplicationController
 	end
 
 	def create
+		Aws.config.update({
+		   credentials: Aws::Credentials.new()
+		})
+		s3 = Aws::S3::Resource.new(region: 'us-east-1')
 		@post = Post.create(post_params)
 		@post.user = current_user
-	if @post.save
+		if @post.save
+			image = params["post"]["image"]				
+			obj = s3.bucket('thinxforum').object(@post.id)
+			obj.upload_file(image.tempfile)				
 			redirect_to @post
 			flash[:notice] = "Success! Post successfully created."
 		else 
@@ -29,7 +36,7 @@ class PostsController < ApplicationController
 	private
 
 	def post_params
-		params.require(:post).permit(:title, :content)
+		params.require(:post).permit(:title, :content, :image)
 	end
 
 	def find_post

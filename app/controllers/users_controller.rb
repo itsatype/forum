@@ -5,7 +5,6 @@ class UsersController < ApplicationController
 	end
 
 	def create
-		binding.pry
 		@user = User.create(user_params)
 		session[:user_id] = @user.id
 		if @user.save
