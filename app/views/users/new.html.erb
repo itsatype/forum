@@ -1,17 +1,35 @@
-<%= form_for @user do |f| %>
-	<div>
-		<%= f.text_field :name, placeholder: "Username" %>
-	</div>
-	<div>
-		<%= f.text_field :email, placeholder: "Email" %>
-	</div>	
-	<div>
-		<%= f.password_field :password, placeholder: "Password" %>
-	</div>	
-	<div>
-		<%= f.password_field :password, placeholder: "Confirm Password" %>
-	</div>			
-	<div>
-		<%= f.submit %>
-	</div>
-<% end%>
+    <div class="demo-blog demo-blog--blogpost mdl-layout mdl-js-layout has-drawer is-upgraded">
+      <main class="mdl-layout__content">
+        <div class="demo-blog__posts mdl-grid">
+        	<div class="mdl-layout-spacer"></div>
+          <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--6-col">
+
+            <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+						<%= form_for @user do |f| %>
+	            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+							  <%= f.text_field :name, class: "mdl-textfield__input" %>
+	              <%= f.label :name, class: "mdl-textfield__label"%>
+	            </div>
+	            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+							  <%= f.text_field :email, class: "mdl-textfield__input" %>
+	              <%= f.label :email, class: "mdl-textfield__label"%>
+	            </div>
+	            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+							  <%= f.password_field :password, class: "mdl-textfield__input" %>
+	              <%= f.label :password, class: "mdl-textfield__label"%>
+	            </div>
+	            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+							  <%= f.password_field :password_confirmation, class: "mdl-textfield__input" %>
+	              <%= f.label :password_confirmation, class: "mdl-textfield__label"%>
+	            </div>
+	           </div>						
+	          <div class="mdl-card__actions mdl-card--border">
+	            <span><%= f.button :submit, class: "mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" %></span>
+	          </div>
+          <% end%>
+			</div>
+			<div class="mdl-layout-spacer"></div>
+		</div>
+	</main>
+</div>

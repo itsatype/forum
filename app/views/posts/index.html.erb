@@ -1,7 +1,15 @@
   <div class="demo-blog mdl-layout mdl-js-layout has-drawer is-upgraded">
     <main class="mdl-layout__content">
       <div class="demo-blog__posts mdl-grid">
-				<div class="mdl-card something-else mdl-cell mdl-cell--12-col">
+			  <% if flash[:notice] %>
+			    <div class="mdl-layout-spacer"></div>
+					<span class="mdl-chip mdl-chip--contact">
+					    <span class="mdl-chip__contact mdl-color--blue mdl-color-text--white">!</span>
+					    <span class="mdl-chip__text"><%= flash[:notice] %></span>
+					</span>
+					<div class="mdl-layout-spacer"></div>  
+			  <% end %>      
+			<div class="mdl-card something-else mdl-cell mdl-cell--12-col">
 				<a href="<%= new_post_path %>">
 				  <button class="mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--fab mdl-color--accent" >
 				    <i class="material-icons mdl-color-text--white" role="presentation">add</i>
@@ -14,25 +22,30 @@
 				    <div>
 				      <strong>Thinx Forum</strong>
 				    </div>
-				    <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right mdl-js-ripple-effect" for="menubtn">
-				      <li class="mdl-menu__item"><a href="https://www.shethinx.com/pages/about-us"> About</a></li>
-				      <li class="mdl-menu__item">Message</li>
-				    </ul>
-				    <button id="menubtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-				      <i class="material-icons" role="presentation">more_vert</i>
-				      <span class="visuallyhidden">show menu</span>
-				    </button>
+              <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right mdl-js-ripple-effect" for="menubtn">
+				      	<li class="mdl-menu__item"><a href="https://www.shethinx.com/pages/about-us"> About</a></li>
+				      	<li class="mdl-menu__item">Message</li>
+              </ul>
+              <button id="menubtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                <i class="material-icons" role="presentation">more_vert</i>
+                <span class="visuallyhidden">show menu</span>
+              </button>
 				  </div>
 				</div>
 
       <% @posts.each do |post| %>
-				<div class="mdl-card  mdl-shadow--2dp mdl-cell mdl-cell--12-col">
-					<div class="mdl-card__media mdl-color-text--grey-50">
-						<img src ="https://s3.amazonaws.com/thinxforum/<%= post.id %>">
-						<h3><%= link_to post.title, post_path(post.id) %></h3>
+
+        <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+          <div class="mdl-card__media mdl-color-text--grey-50">
+						<div class="mdl-card__title">
+							<h3 class="mdl-card__title-text card-title"><%= link_to post.title, post_path(post.id) %></h3>
+						</div>
+						<% if post.image %>
+							<img src ="https://s3.amazonaws.com/thinxforum/<%= post.id %>" class="card-image">
+						<% end%>						
 					</div>
-					<div class="mdl-card__supporting-text mdl-color-text--grey-600">
-						<%= post.content %>
+          <div class="mdl-card__supporting-text mdl-color-text--grey-600">
+						<span class="card-overflow"><%= post.content %></span>
 					</div>
 			  	<div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
 						<strong><%= post.user.name %></strong> 	

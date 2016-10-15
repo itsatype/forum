@@ -8,14 +8,10 @@ class PostsController < ApplicationController
 	end
 
 	def create
-		Aws.config.update({credentials: Aws::Credentials.new()})
-		s3 = Aws::S3::Resource.new(region: 'us-east-1')
 		@post = Post.create(post_params)
 		@post.user = current_user
 		if @post.save
-			image = params["post"]["image"]				
-			obj = s3.bucket('thinxforum').object(@post.id)
-			obj.upload_file(image.tempfile)				
+			ImageSaver.new(@post, params["post"]["image"]).save_to_aws
 			redirect_to @post
 			flash[:notice] = "Success! Post successfully created."
 		else 
@@ -31,8 +27,20 @@ class PostsController < ApplicationController
 	def edit
 	end
 
+	def update
+		@post.update(post_params)
+	 	redirect_to posts_path
+	 	flash[:notice] = "Success! Post successfully updated."
+	end
+
 	def index
 		@posts = Post.all
+	end
+
+	def destroy
+		Post.destroy(@post)
+		redirect_to posts_path
+	 	flash[:notice] = "Success! Post successfully deleted."
 	end
 
 	private

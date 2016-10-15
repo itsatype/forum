@@ -4,7 +4,7 @@
     <title>Forum</title>
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-		<%= stylesheet_link_tag 'https://code.getmdl.io/1.2.1/material.red-light_blue.min.css' %>
+		<%= stylesheet_link_tag 'https://code.getmdl.io/1.2.1/material.light_blue-red.min.css' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
   </head>
@@ -16,7 +16,7 @@
   <header class="mdl-layout__header">
     <div class="mdl-layout__header-row">
       <!-- Title -->
-      <span class="mdl-layout-title">Thinx Forum</span>
+      <span class="mdl-layout-title"> <%= link_to "Thinx Forum", posts_path %></span>
       <!-- Add spacer, to align navigation to the right -->
       <div class="mdl-layout-spacer"></div>
       <!-- Navigation. We hide it in small screens. -->
@@ -32,12 +32,11 @@
     </div>
   </header>
   <div class="mdl-layout__drawer">
-    <span class="mdl-layout-title">Recent Posts</span>
+    <span class="mdl-layout-title">More About Thinx</span>
     <nav class="mdl-navigation">
-      <a class="mdl-navigation__link" href="">Link</a>
-      <a class="mdl-navigation__link" href="">Link</a>
-      <a class="mdl-navigation__link" href="">Link</a>
-      <a class="mdl-navigation__link" href="">Link</a>
+      <a class="mdl-navigation__link" href="https://www.shethinx.com/pages/it-works">How it Works</a>
+      <a class="mdl-navigation__link" href="https://www.shethinx.com/pages/periodical">Blog</a>
+      <a class="mdl-navigation__link" href="https://www.shethinx.com/pages/about-us">About</a>
     </nav>
   </div>
   <main class="mdl-layout__content">

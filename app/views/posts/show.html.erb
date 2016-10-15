@@ -1,13 +1,22 @@
-<% if flash[:notice] %>
-  <%= flash[:notice] %>
-<% end %>
     <div class="demo-blog demo-blog--blogpost mdl-layout mdl-js-layout has-drawer is-upgraded">
       <main class="mdl-layout__content">
-
         <div class="demo-blog__posts mdl-grid">
+          <% if flash[:notice] %>
+            <div class="mdl-layout-spacer"></div>
+            <span class="mdl-chip mdl-chip--contact">
+                <span class="mdl-chip__contact mdl-color--blue mdl-color-text--white">!</span>
+                <span class="mdl-chip__text"><%= flash[:notice] %></span>
+            </span>
+            <div class="mdl-layout-spacer"></div>  
+          <% end %>  
           <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
             <div class="mdl-card__media mdl-color-text--grey-50">
-              <h3>	<%= @post.title %></h3>
+              <div class="mdl-card__title">
+                <h3 class="mdl-card__title-text"><%= @post.title %></h3>
+              </div>            
+            <% if @post.image %>
+              <img src ="https://s3.amazonaws.com/thinxforum/<%= @post.id %>" class="card-image">
+            <% end%>  
             </div>
             <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
               <div class="minilogo"></div>
@@ -24,34 +33,21 @@
             <div class="mdl-color-text--grey-700 mdl-card__supporting-text">
             	<%= @post.content %>
             </div>
-            <div class="mdl-color-text--primary-contrast mdl-card__supporting-text comments">
-            <%= form_for @comment do |f| %>
-	            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-							  <%= f.text_area :comment, class: "mdl-textfield__input" %>
-	              <%= f.label :comment, class: "mdl-textfield__label"%>
-	            </div>
-							<div>
-								<%= f.hidden_field :post_id, value: @post.id %>
-							</div>	
-						<div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
-							<span><%= f.submit 'Leave Comment!', class: "mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" %></span>
-						</div>
-						<% end%>
-						<div class="comment mdl-color-text--grey-700">
-						<% @comments.each do |comment| %>
-                <header class="comment__header">
-                  <div class="comment__author">
-                    <strong><%= comment.user.name %></strong>
-                    <span><%= comment.created_at.strftime("%A, %d %b %Y")%></span>
-                  </div>
-                </header>
-                <div class="comment__text">
-                  	<%= comment.comment %>
-                </div>
-                <% end%>
-                </div>
+            <% if current_user && current_user.id == @post.user.id %>
+                <div class="mdl-card__actions mdl-card--border">
+                  <%= link_to edit_post_path(@post.id), class: "mdl-button mdl-js-button mdl-button--icon mdl-button--colored" do %>
+                    <i class="material-icons">mode_edit</i>
+                  <% end %>                    
+                  <%= link_to post_path(@post.id), method: :delete, class: "mdl-button mdl-js-button mdl-button--icon mdl-button--colored" do %>
+                    <i class="material-icons">delete_forever</i>
+                  <% end %>         
+
+                <% end %>
               </div>
+            <div class="mdl-color-text--primary-contrast mdl-card__supporting-text comments">
+              <%= render 'shared/comments' %>              
             </div>
           </div>
+        </div>
 	</main>
 </div>

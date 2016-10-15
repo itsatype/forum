@@ -7,6 +7,7 @@ class CommentsController < ApplicationController
 		@comment.user = current_user
 		if @comment.save
 			redirect_to post_path(@comment.post_id)
+			flash[:notice] = "Success! Comment successfully created."			
 		end
 	end
 

@@ -1,0 +1,24 @@
+<%= form_for @comment do |f| %>
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+	  <%= f.text_field :comment, class: "mdl-textfield__input" %>
+    <%= f.label :comment, class: "mdl-textfield__label"%>
+  </div>
+	<div>
+		<%= f.hidden_field :post_id, value: @post.id %>
+	</div>	
+	<div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
+		<span><%= f.submit 'Leave Comment!', class: "mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" %></span>
+	</div>
+<% end%>
+<div class="comment mdl-color-text--grey-700">
+	<% @comments.each do |comment| %>
+		<header class="comment__header">
+	  	<div class="comment__author">
+	    	<span><i class="material-icons">account_circle</i> <%= comment.user.name %>  commented on <%= comment.created_at.strftime("%A, %d %b %Y")%>:</span>
+	    </div>
+	   </header>
+	   <div class="comment__text">
+	     <%= comment.comment %>
+	   </div>
+	<% end%>
+</div>
