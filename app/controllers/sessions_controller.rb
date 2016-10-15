@@ -11,6 +11,7 @@ class SessionsController <  ApplicationController
 			session[:user_id] = @user.id
 			redirect_to posts_path
 		else
+			flash[:notice] = "Username or Password Invalid."
 			render 'new'
 		end
 	end

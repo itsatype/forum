@@ -19,11 +19,7 @@ id | content | sender_id (user) | recipient_id (user) | read | parent_id?
 
 <!-- thread 
 id |  -->
-
+# Messages
 # Tests
-# Design
-# Users
-# Amazon S3
 # Heroku
 # Angular
-# Messages

@@ -1,8 +1,13 @@
 Rails.application.routes.draw do
 	resources :posts
-	resources :comments, only: [:create]	
+	resources :comments, only: :create
+	resources :messages, only: [:index, :show]
 	resources :users, only: [:new, :create]
   resources :sessions, only: [:new, :create, :destroy]
+
+  resources :users do
+    resources :messages, only: [:new, :create]
+  end
 
   get '/', to: 'posts#index'
   get '/login', to: 'sessions#new'

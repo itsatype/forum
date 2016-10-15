@@ -9,6 +9,7 @@
             </span>
             <div class="mdl-layout-spacer"></div>  
           <% end %>  
+          
           <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
             <div class="mdl-card__media mdl-color-text--grey-50">
               <div class="mdl-card__title">
@@ -18,8 +19,14 @@
               <img src ="https://s3.amazonaws.com/thinxforum/<%= @post.id %>" class="card-image">
             <% end%>  
             </div>
-            <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
-              <div class="minilogo"></div>
+          <div class="mdl-card__supporting-text meta meta--fill mdl-color-text--grey-800 mdl-color--blue-500">
+             <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-left mdl-js-ripple-effect" for="menubtn">
+                <li class="mdl-menu__item"><a href="#"> About</a></li>
+                <li class="mdl-menu__item"><%= link_to "Send Message", new_user_message_path(@post.user) %></li>
+              </ul>
+              <button id="menubtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                <i class="material-icons " role="presentation">more_vert</i>
+              </button>
               <div>
                 <strong><%= @post.user.name %></strong>
                 <span><%= @post.user.created_at.strftime("%A, %d %b %Y") %></span>

@@ -11,7 +11,7 @@ class PostsController < ApplicationController
 		@post = Post.create(post_params)
 		@post.user = current_user
 		if @post.save
-			ImageSaver.new(@post, params["post"]["image"]).save_to_aws
+			ImageSaver.new(@post, params["post"]["image"]).save_to_aws if @post.image
 			redirect_to @post
 			flash[:notice] = "Success! Post successfully created."
 		else 
@@ -29,6 +29,7 @@ class PostsController < ApplicationController
 
 	def update
 		@post.update(post_params)
+		ImageSaver.new(@post, params["post"]["image"]).save_to_aws if @post.image
 	 	redirect_to posts_path
 	 	flash[:notice] = "Success! Post successfully updated."
 	end
