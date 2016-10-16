@@ -14,10 +14,10 @@
 	<% @comments.each do |comment| %>
 		<header class="comment__header">
 	  	<div class="comment__author">
-	    	<span><i class="material-icons">account_circle</i> <%= comment.user.name %>  commented on <%= comment.created_at.strftime("%A, %d %b %Y")%>:</span>
+	    	<span><i class="material-icons icon-align">account_circle</i> <%= comment.user.name %>  commented on <%= comment.created_at.strftime("%A, %d %b %Y")%>:</span>
 	    </div>
 	   </header>
-	   <div class="comment__text">
+	   <div class="comment__text comment-text">
 	     <%= comment.comment %>
 	   </div>
 	<% end%>

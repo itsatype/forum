@@ -11,46 +11,7 @@
           <% end %>  
           
           <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
-            <div class="mdl-card__media mdl-color-text--grey-50">
-              <div class="mdl-card__title">
-                <h3 class="mdl-card__title-text"><%= @post.title %></h3>
-              </div>            
-            <% if @post.image %>
-              <img src ="https://s3.amazonaws.com/thinxforum/<%= @post.id %>" class="card-image">
-            <% end%>  
-            </div>
-          <div class="mdl-card__supporting-text meta meta--fill mdl-color-text--grey-800 mdl-color--blue-500">
-             <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-left mdl-js-ripple-effect" for="menubtn">
-                <li class="mdl-menu__item"><a href="<%= user_path(@post.user) %>"> About</a></li>
-                <li class="mdl-menu__item"><%= link_to "Send Message", new_user_message_path(@post.user) %></li>
-              </ul>
-              <button id="menubtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-                <i class="material-icons " role="presentation">more_vert</i>
-              </button>
-              <div>
-                <strong><%= @post.user.name %></strong>
-                <span><%= @post.user.created_at.strftime("%A, %d %b %Y") %></span>
-              </div>	
-              <div class="section-spacer"></div>
-              <div>
-                <i class="material-icons" role="presentation">share</i>
-                <span class="visuallyhidden">share</span>
-              </div>
-            </div>
-            <div class="mdl-color-text--grey-700 mdl-card__supporting-text">
-            	<%= @post.content %>
-            </div>
-            <% if current_user && current_user.id == @post.user.id %>
-                <div class="mdl-card__actions mdl-card--border">
-                  <%= link_to edit_post_path(@post.id), class: "mdl-button mdl-js-button mdl-button--icon mdl-button--colored" do %>
-                    <i class="material-icons">mode_edit</i>
-                  <% end %>                    
-                  <%= link_to post_path(@post.id), method: :delete, class: "mdl-button mdl-js-button mdl-button--icon mdl-button--colored" do %>
-                    <i class="material-icons">delete_forever</i>
-                  <% end %>         
-
-                <% end %>
-              </div>
+              <%= render 'shared/post' %>              
             <div class="mdl-color-text--primary-contrast mdl-card__supporting-text comments">
               <%= render 'shared/comments' %>              
             </div>
