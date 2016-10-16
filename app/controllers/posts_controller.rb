@@ -30,7 +30,7 @@ class PostsController < ApplicationController
 	def update
 		@post.update(post_params)
 		ImageSaver.new(@post, params["post"]["image"]).save_to_aws if @post.image
-	 	redirect_to posts_path
+	 	redirect_to @post
 	 	flash[:notice] = "Success! Post successfully updated."
 	end
 
@@ -39,7 +39,7 @@ class PostsController < ApplicationController
 	end
 
 	def destroy
-		Post.destroy(@post)
+		@post.destroy
 		redirect_to posts_path
 	 	flash[:notice] = "Success! Post successfully deleted."
 	end

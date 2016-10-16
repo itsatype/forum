@@ -1,6 +1,11 @@
     <div class="demo-blog demo-blog--blogpost mdl-layout mdl-js-layout has-drawer is-upgraded">
       <main class="mdl-layout__content">
         <div class="demo-blog__posts mdl-grid">
+				 <% if @user.errors.any? %>
+				      <% @user.errors.full_messages.each do |msg| %>
+				        <div><%= msg %></div>
+				      <% end %>
+				  <% end %>        
         	<div class="mdl-layout-spacer"></div>
           <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--6-col">
 
