@@ -19,8 +19,6 @@ id | content | sender_id (user) | recipient_id (user) | read | parent_id?
 
 <!-- thread 
 id |  -->
-
-# Tests
-# sent message / modal
-# Angular
 # Heroku
+# Angular
+

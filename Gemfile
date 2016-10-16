@@ -26,6 +26,7 @@ gem 'material_design_lite-rails', '~> 1.2'
 gem 'material_icons'
 gem 'aws-sdk'
 gem 'figaro'
+gem 'angularjs-rails'
 
 
 group :development, :test do
