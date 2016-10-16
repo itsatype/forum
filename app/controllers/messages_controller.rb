@@ -25,6 +25,7 @@ class MessagesController < ApplicationController
 
 	def index
 		@messages = Message.where(recipient_id: current_user.id)
+		@sent_messages = Message.where(sender_id: current_user.id)
 	end
 
 	private

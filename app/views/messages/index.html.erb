@@ -1,24 +1,52 @@
 <div class="demo-blog demo-blog--blogpost mdl-layout mdl-js-layout has-drawer is-upgraded">
   <main class="mdl-layout__content">
     <div class="demo-blog__posts mdl-grid">
-				<% @messages.each do |message| %>
-        <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col">
-          <div class="mdl-card__media mdl-color-text--grey-50">
-             <p>From: <%= message.sender.name %></p>
+
+    <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect mdl-cell--12-col">
+      <div class="mdl-tabs__tab-bar" style="float: left; margin-left: 10px;">
+          <a href="#received-panel" class="mdl-tabs__tab is-active mdl-color-text--grey-400"> My Inbox</a>
+          <a href="#sent-panel" class="mdl-tabs__tab mdl-color-text--grey-400">Sent Messages</a>
+      </div>
+      <div class="mdl-tabs__panel is-active" id="received-panel">
+  				<% @messages.each do |message| %>
+          <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col">
+            <div class="mdl-card__media mdl-color-text--grey-50">
+               <p>From: <%= message.sender.name %></p>
+            </div>
+            <div class="mdl-card__supporting-text mdl-color-text--grey-600">
+              <%= message.content %>
+            </div>
+            <div class="mdl-card__actions mdl-card--border">
+            <span><p>Sent: <%= message.created_at.strftime("%A, %d %b %Y") %></p></span>
+              <span>
+              	<%= link_to new_user_message_path(message.sender), class: "mdl-button mdl-js-button mdl-button--icon mdl-button--colored" do %>
+      						<i class="material-icons">reply</i>
+    						<% end %>  
+    					</span>
+            </div>
           </div>
-          <div class="mdl-card__supporting-text mdl-color-text--grey-600">
-            <%= message.content %>
+        <% end%>
+      </div>
+
+
+      <div class="mdl-tabs__panel" id="sent-panel">
+          <% @sent_messages.each do |message| %>
+          <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col">
+            <div class="mdl-card__media mdl-color-text--grey-50">
+               <p>To: <%= message.recipient.name %></p>
+            </div>
+            <div class="mdl-card__supporting-text mdl-color-text--grey-600">
+              <%= message.content %>
+            </div>
+            <div class="mdl-card__actions mdl-card--border">
+            <span><p>Sent: <%= message.created_at.strftime("%A, %d %b %Y") %></p></span>
+            </div>
           </div>
-          <div class="mdl-card__actions mdl-card--border">
-          <span><p>Sent: <%= message.created_at.strftime("%A, %d %b %Y") %></p></span>
-            <span>
-            	<%= link_to new_user_message_path(message.sender), class: "mdl-button mdl-js-button mdl-button--icon mdl-button--colored" do %>
-    						<i class="material-icons">reply</i>
-  						<% end %>  
-  					</span>
-          </div>
-        </div>
-      <% end%>
+        <% end%>
+      </div>
+
     </div>  
   </main>
 </div>
+
+

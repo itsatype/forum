@@ -1,0 +1,29 @@
+    <div class="demo-blog demo-blog--blogpost mdl-layout mdl-js-layout has-drawer is-upgraded">
+      <main class="mdl-layout__content">
+        <div class="demo-blog__posts mdl-grid">       
+        	<div class="mdl-layout-spacer"></div>
+        <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--8-col">
+            <div class="mdl-card__media mdl-color-text--grey-50">
+              <div class="mdl-card__title">
+                <h3 class="mdl-card__title-text"><%= @user.name %></h3>
+              </div>        
+            </div>
+	          <div class="mdl-card__actions mdl-color-text--grey-700 ">
+	            <div><p>Joined: <%= @user.created_at.strftime("%A, %d %b %Y") %></p></div>
+	            <% if @user.posts.any? %> 
+	            <div><p>Most Recent Post: <%= link_to @user.posts.last.title, post_path(@user.posts.last) %></p></div>
+	            <% end %>
+	            <% if @user.comments.any? %> 
+	            <div><p>Most Recent Comment: <%= link_to @user.comments.last.comment, post_path(@user.comments.last.post) %></p></div>
+	            <% end %>
+	           </div>						
+	          <div class="mdl-card__actions mdl-card--border">
+	            <%= link_to new_user_message_path(@user), class: "mdl-button mdl-js-button mdl-button--icon mdl-button--colored" do %>
+	              <i class="material-icons">contact_mail</i>
+	            <% end %>    	          
+	          </div>
+			</div>
+			<div class="mdl-layout-spacer"></div>
+		</div>
+	</main>
+</div>
