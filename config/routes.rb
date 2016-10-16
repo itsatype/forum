@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 	resources :posts
 	resources :comments, only: :create
 	resources :messages, only: [:index, :show]
-	resources :users, only: [:new, :create, :show]
+	resources :users, only: [:new, :create, :show, :index]
   resources :sessions, only: [:new, :create, :destroy]
 
   resources :users do

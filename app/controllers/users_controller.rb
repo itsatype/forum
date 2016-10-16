@@ -21,7 +21,7 @@ class UsersController < ApplicationController
 
 	def index
 		@user = User.find_by(name: params[:name])
-		@user ? message = "Sorry, that user name already exists" : message = "Username available!"
+		@user ? message = "Sorry, that username already exists" : message = "Username available!"
 		render json: { message: message } 
 	end
 
