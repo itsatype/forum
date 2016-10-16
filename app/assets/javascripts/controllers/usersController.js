@@ -12,6 +12,7 @@ function UsersController($http) {
         });
     	}
 }
+UsersController.$inject = ['$http'];
 
 angular
 	.module('app')
