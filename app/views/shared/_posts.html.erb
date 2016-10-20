@@ -14,7 +14,8 @@
 			</div>
 	  	<div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
 				<strong><%= post.user.name %></strong> 	
-				<span><%= post.created_at.strftime("%A, %d %b %Y") %></span>
+				<span><%= post.created_at.strftime("%A, %d %b %Y ") %>&nbsp;</span>
+				<% if post.created_at.today? %><span class="label label-danger">New</span><% end %>
 			</div>
 		</div>
 	</div>
