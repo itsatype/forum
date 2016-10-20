@@ -1,0 +1,15 @@
+<% @sent_messages.each do |message| %>
+  <div class="col-xs-12">
+    <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col">
+      <div class="mdl-card__media mdl-color-text--grey-50">
+         <p>To: <%= message.recipient.name %></p>
+      </div>
+      <div class="mdl-card__supporting-text mdl-color-text--grey-600">
+        <%= message.content %>
+      </div>
+      <div class="mdl-card__actions mdl-card--border">
+      <span><p>Sent: <%= message.created_at.strftime("%A, %d %b %Y") %></p></span>
+      </div>
+    </div>
+  </div>
+<% end%>

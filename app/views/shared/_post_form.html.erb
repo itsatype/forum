@@ -1,30 +1,31 @@
     <div class="demo-blog__posts mdl-grid">
-    
       <div class="mdl-layout-spacer"></div>
       <%= form_for @post do |f| %>
-        <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col">
-           <% if @post.errors.any? %>
-              <ul>
-                <% @post.errors.full_messages.each do |msg| %>
-                  <li><%= msg %></li>
-                <% end %>
-              </ul>
-            <% end %>         
-          <div class="mdl-card__media mdl-color-text--grey-50">
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-              <%= f.text_field :title, class: "mdl-textfield__input" %>
-              <%= f.label :title, class: "mdl-textfield__label"%>
+        <div class="col-xs-12">      
+          <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col">
+             <% if @post.errors.any? %>
+                <ul>
+                  <% @post.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                  <% end %>
+                </ul>
+              <% end %>         
+            <div class="mdl-card__media mdl-color-text--grey-50">
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <%= f.text_field :title, class: "mdl-textfield__input" %>
+                <%= f.label :title, class: "mdl-textfield__label"%>
+              </div>
             </div>
-          </div>
-          <div class="mdl-card__supporting-text mdl-color-text--grey-600">
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-              <%= f.text_area :content, class: "mdl-textfield__input", rows: "10"  %>
-              <%= f.label :content, class: "mdl-textfield__label"%>              
+            <div class="mdl-card__supporting-text mdl-color-text--grey-600">
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <%= f.text_area :content, class: "mdl-textfield__input", rows: "10"  %>
+                <%= f.label :content, class: "mdl-textfield__label"%>              
+              </div>
             </div>
-          </div>
-          <div><%= f.file_field :image, accept: 'image/png,image/gif,image/jpeg', style: "margin: 8px 15px;" %></div>                      
-          <div class="mdl-card__actions mdl-card--border">
-            <span><%= f.button :submit, class: "mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" %></span>
+            <div><%= f.file_field :image, accept: 'image/png,image/gif,image/jpeg', style: "margin: 8px 15px;" %></div>                      
+            <div class="mdl-card__actions mdl-card--border">
+              <span><%= f.button :submit, class: "mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" %></span>
+            </div>
           </div>
         </div>
       <% end%>

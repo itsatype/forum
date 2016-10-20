@@ -1,29 +1,33 @@
-    <div class="demo-blog demo-blog--blogpost mdl-layout mdl-js-layout has-drawer is-upgraded">
-      <main class="mdl-layout__content">
-        <div class="demo-blog__posts mdl-grid">
-        	<div class="mdl-layout-spacer"></div>
-				  <% if flash[:notice] %>
-						<span class="mdl-chip mdl-chip--contact">
-						    <span class="mdl-chip__contact mdl-color--blue mdl-color-text--white">!</span>
-						    <span class="mdl-chip__text"><%= flash[:notice] %></span>
-						</span>
-				  <% end %>        	
-          <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--6-col">
-            <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
-		          
-		          <%= form_tag sessions_path do %>        
-			            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-			              <%= text_field_tag(:name, nil, class: "mdl-textfield__input" ) %>
-			              <%= label_tag :name, nil, class: "mdl-textfield__label"%>
-			            </div>
-			            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-			              <%= password_field_tag(:password, nil, class: "mdl-textfield__input" ) %>
-			              <%= label_tag :password, nil, class: "mdl-textfield__label"%>
-			            </div>            
-			          </div>
-			          <div class="mdl-card__actions mdl-card--border">
-			            <span><%= submit_tag "Log In", class: "mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" %></span>
-			          </div>
+<% if flash[:notice] %>
+	<div class="alert alert-warning alert-dismissible banner-align" role="alert">
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	    <%= flash[:notice] %>
+	</div>
+<% end %>  
+  <div class="demo-blog demo-blog--blogpost mdl-layout mdl-js-layout has-drawer is-upgraded">
+    <main class="mdl-layout__content">    
+      <div class="demo-blog__posts mdl-grid">      
+      	<div class="mdl-layout-spacer"></div>         	
+        <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--6-col">
+          <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+	          
+	          <%= form_tag sessions_path do %>        
+		            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+		              <%= text_field_tag(:name, nil, class: "mdl-textfield__input" ) %>
+		              <%= label_tag :name, nil, class: "mdl-textfield__label"%>
+		            </div>
+		            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+		              <%= password_field_tag(:password, nil, class: "mdl-textfield__input" ) %>
+		              <%= label_tag :password, nil, class: "mdl-textfield__label"%>
+		            </div>            
+		          </div>
+		          <div class="mdl-card__actions mdl-card--border">
+		            <span>
+		            	<%= submit_tag "Log In", class: "mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" %>
+		            </span>
+		          </div>
 		        <% end %>
 				</div>
 			<div class="mdl-layout-spacer"></div>

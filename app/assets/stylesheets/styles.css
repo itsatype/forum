@@ -41,7 +41,9 @@ body .demo-blog {
 a {
   text-decoration: none;
 }
-
+a:hover {
+  text-decoration: none;
+}
 .demo-blog .demo-blog__posts {
   max-width: 900px;
   padding: 0;
@@ -495,4 +497,11 @@ a {
 .icon-align {
   display: inline-flex;
   vertical-align: middle;
+}
+.banner-align {
+  margin: 25px 35px 0 35px;
+}
+.tab-align {
+  float: left; 
+  margin-left: 25px;
 }

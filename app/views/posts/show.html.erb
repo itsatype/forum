@@ -1,21 +1,24 @@
-    <div class="demo-blog demo-blog--blogpost mdl-layout mdl-js-layout has-drawer is-upgraded">
-      <main class="mdl-layout__content">
-        <div class="demo-blog__posts mdl-grid">
-          <% if flash[:notice] %>
-            <div class="mdl-layout-spacer"></div>
-            <span class="mdl-chip mdl-chip--contact">
-                <span class="mdl-chip__contact mdl-color--white material-icons  material-icons md-36 mdl-color-text--blue">error</i></span>
-                <span class="mdl-chip__text"><%= flash[:notice] %></span>
-            </span>
-            <div class="mdl-layout-spacer"></div>  
-          <% end %>  
-          
-          <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
-              <%= render 'shared/post' %>              
-            <div class="mdl-color-text--primary-contrast mdl-card__supporting-text comments">
-              <%= render 'shared/comments' %>              
-            </div>
+<div class="demo-blog demo-blog--blogpost mdl-layout mdl-js-layout has-drawer is-upgraded">
+  <main class="mdl-layout__content">
+    <div class="row">
+      <div class="demo-blog__posts mdl-grid">
+        <% if flash[:notice] %>
+          <div class="mdl-layout-spacer"></div>
+          <span class="mdl-chip mdl-chip--contact">
+              <span class="mdl-chip__contact mdl-color--white material-icons  material-icons md-36 mdl-color-text--blue">error</i></span>
+              <span class="mdl-chip__text"><%= flash[:notice] %></span>
+          </span>
+          <div class="mdl-layout-spacer"></div>  
+        <% end %>  
+      <div class="col-xs-12">
+        <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+            <%= render 'shared/post' %>              
+          <div class="mdl-color-text--primary-contrast mdl-card__supporting-text comments">
+            <%= render 'shared/comments' %>              
           </div>
         </div>
-	</main>
+        </div>
+      </div>
+    </div>
+  </main>
 </div>

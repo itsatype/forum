@@ -1,0 +1,21 @@
+<% @posts.each do |post| %>
+  <div class="col-xs-12 <% unless post.image %> col-lg-6 <% end %>">
+    <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+      <div class="mdl-card__media mdl-color-text--grey-50">
+				<div class="mdl-card__title">
+					<h3 class="mdl-card__title-text card-title"><%= link_to post.title, post_path(post.id) %></h3>
+				</div>
+				<% if post.image %>
+					<img src ="https://s3.amazonaws.com/thinxforum/<%= post.id %>" class="card-image">
+				<% end%>						
+			</div>
+      <div class="mdl-card__supporting-text mdl-color-text--grey-600">
+				<span class="card-overflow"><%= post.content %></span>
+			</div>
+	  	<div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
+				<strong><%= post.user.name %></strong> 	
+				<span><%= post.created_at.strftime("%A, %d %b %Y") %></span>
+			</div>
+		</div>
+	</div>
+<% end%>

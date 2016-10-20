@@ -1,50 +1,34 @@
   <div class="demo-blog mdl-layout mdl-js-layout has-drawer is-upgraded">
     <main class="mdl-layout__content">
-      <div class="demo-blog__posts mdl-grid">
-			  <% if flash[:notice] %>
-			    <div class="mdl-layout-spacer"></div>
-					<span class="mdl-chip mdl-chip--contact">
-                <span class="mdl-chip__contact mdl-color--white material-icons  material-icons md-36 mdl-color-text--blue">error</i></span>
-					    <span class="mdl-chip__text"><%= flash[:notice] %></span>
-					</span>
-					<div class="mdl-layout-spacer"></div>  
-			  <% end %>      
-			<div class="mdl-card something-else mdl-cell mdl-cell--12-col">
-				  <div class="mdl-card__media mdl-color--white mdl-color-text--grey-600">
-				    <img src="https://ga-core.s3.amazonaws.com/cms/files/files/000/002/178/original/Thinx.png">
-				  </div>
-				  <div class="mdl-card__supporting-text meta meta--fill mdl-color-text--grey-600">
-				    <div>
-				      <strong>Thinx Forum</strong>
-				    </div>
-				<a href="<%= new_post_path %>">
-				  <button class="mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--fab mdl-color--accent" >
-				    <i class="material-icons mdl-color-text--white" role="presentation">add</i>
-					</button> 
-				</a>				    
-				  </div>
-				</div>
-
-      <% @posts.each do |post| %>
-
-        <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
-          <div class="mdl-card__media mdl-color-text--grey-50">
-						<div class="mdl-card__title">
-							<h3 class="mdl-card__title-text card-title"><%= link_to post.title, post_path(post.id) %></h3>
+    	<div class="row">    
+	      <div class="demo-blog__posts mdl-grid">
+				  <% if flash[:notice] %>
+				    <div class="mdl-layout-spacer"></div>
+						<span class="mdl-chip mdl-chip--contact">
+	                <span class="mdl-chip__contact mdl-color--white material-icons  material-icons md-36 mdl-color-text--blue">error</i></span>
+						    <span class="mdl-chip__text"><%= flash[:notice] %></span>
+						</span>
+						<div class="mdl-layout-spacer"></div>  
+				  <% end %>      
+	      <div class="col-xs-12">			  
+					<div class="mdl-card something-else mdl-cell mdl-cell--12-col">
+						  <div class="mdl-card__media mdl-color--white mdl-color-text--grey-600">
+						    <img src="https://ga-core.s3.amazonaws.com/cms/files/files/000/002/178/original/Thinx.png">
+						  </div>
+						  <div class="mdl-card__supporting-text meta meta--fill mdl-color-text--grey-600">
+						    <div>
+						      <strong>Thinx Forum</strong>
+						    </div>
+						<a href="<%= new_post_path %>">
+						  <button class="mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--fab mdl-color--accent" >
+						    <i class="material-icons mdl-color-text--white" role="presentation">add</i>
+							</button> 
+						</a>				    
+						  </div>
 						</div>
-						<% if post.image %>
-							<img src ="https://s3.amazonaws.com/thinxforum/<%= post.id %>" class="card-image">
-						<% end%>						
 					</div>
-          <div class="mdl-card__supporting-text mdl-color-text--grey-600">
-						<span class="card-overflow"><%= post.content %></span>
-					</div>
-			  	<div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
-						<strong><%= post.user.name %></strong> 	
-						<span><%= post.created_at.strftime("%A, %d %b %Y") %></span>
-					</div>
-				</div>
-			<% end%>
+					<%= render 'shared/posts' %>
+			</div>
 		</div>
 	</main>
 </div>

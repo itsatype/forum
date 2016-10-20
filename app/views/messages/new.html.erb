@@ -1,23 +1,28 @@
 <div class="demo-blog demo-blog--blogpost mdl-layout mdl-js-layout has-drawer is-upgraded">
   <main class="mdl-layout__content">
-    <div class="demo-blog__posts mdl-grid">
-      <div class="mdl-layout-spacer"></div>
-      <%= form_for [@user, @message] do |f| %>
-        <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col">
-          <div class="mdl-card__media mdl-color-text--grey-50">
-             <p>To: <%= @user.name %></p>
-          </div>
-          <div class="mdl-card__supporting-text mdl-color-text--grey-600">
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-              <%= f.text_area :content, class: "mdl-textfield__input", rows: "10"  %>
-              <%= f.label :content, class: "mdl-textfield__label"%>              
+      <div class="row">
+        <div class="demo-blog__posts mdl-grid">
+          <div class="mdl-layout-spacer"></div>
+          <%= form_for [@user, @message] do |f| %>
+            <div class="col-xs-12">
+              <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+                <div class="mdl-card__media mdl-color-text--grey-50">
+                   <p>To: <%= @user.name %></p>
+                </div>
+                <div class="mdl-card__supporting-text mdl-color-text--grey-600">
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <%= f.text_area :content, class: "mdl-textfield__input", rows: "10"  %>
+                    <%= f.label :content, class: "mdl-textfield__label"%>              
+                  </div>
+                </div>
+                <div class="mdl-card__actions mdl-card--border">
+                  <span><%= f.button :submit, class: "mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" %></span>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="mdl-card__actions mdl-card--border">
-            <span><%= f.button :submit, class: "mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" %></span>
-          </div>
-        </div>
-      <% end%>
-      <div class="mdl-layout-spacer"></div>
-    </div>  </main>
+          <% end%>
+          <div class="mdl-layout-spacer"></div>
+        </div>  
+      </div>
+    </main>
 </div>
